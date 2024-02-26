@@ -9,6 +9,8 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Feeds from "../pages/Dashboard/Feeds";
 import Profile from "../pages/Dashboard/Profile";
 import Settings from "../pages/Dashboard/Settings";
+import ForgetPwd from "../pages/Auth/ForgetPwd";
+import CreatePwd from "../pages/Auth/CreatePwd";
 
 
 
@@ -21,6 +23,8 @@ const AppRouter = () => {
         <Route index path={'/'} element={<Home />} />
         <Route path={routes.LOGIN} element={<Login />} />
         <Route path={routes.SIGN_UP} element={<Signup />} />
+        <Route path={routes.FORGOT_PASSWORD} element={<ForgetPwd />} />
+        <Route path={routes.RESET_PASSWORD} element={<CreatePwd />} />
         <Route path={routes.DASHBOARD} element={<DashboardLayout />} >
             <Route index element={<Feeds />} />
             <Route path={routes.PROFILE} element={<Profile />} />
