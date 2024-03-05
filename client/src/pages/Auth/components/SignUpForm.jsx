@@ -24,7 +24,7 @@ const SignUpForm = ({formData, setFormData, handleInputChange, handleSignup, isL
       });
     };
   return (
-    <form className="flex flex-col gap-6">
+    <form className="flex flex-col gap-6" onSubmit={handleSignup}>
       <Input
         label={`First Name`}
         labelClass={`text-[14px]`}

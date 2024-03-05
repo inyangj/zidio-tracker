@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignUpForm from "./components/SignUpForm";
+import axios from "axios";
+import Login from "./Login";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -41,21 +43,41 @@ const Signup = () => {
         
       };
 
-      try {
-        setIsLoading(true);
-        const response = await axios.post(`${url}/api/v1/users/signup`, data);
+      console.log(`firstname : ${data.firstName} -- lastname : ${data.lastName} -- email : ${data.email} -- password : ${data.password}`);
 
-        if (response.status === 201) {
-          toast.success("Registration successful!");
-          localStorage.setItem("userData", response.data);
-          setIsLoading(false);
-          navigate("/");
-        } else {
-          toast.error("Registration failed.");
+      // just--
+      // try {
+      //   setIsLoading(true);
+      //   const response = await axios.post(`${url}/api/v1/users/signup`, data);
+
+      //   if (response.status === 201) {
+      //     toast.success("Registration successful!");
+      //     localStorage.setItem("userData", response.data);
+      //     setIsLoading(false);
+      //     navigate("/");
+      //   } else {
+      //     toast.error("Registration failed.");
+      //   }
+      // } catch (error) {
+      //   toast.error("Registration failed.");
+      // }
+
+
+
+      await axios.post('/api/user/registerUser', {firstname : formData.firstNnme, lastname : formData.lastname, email : formData.email, password : formData.password})
+      .then(response => {
+        if(response.ok){
+          toast.success('Registered successfully');
+          navigate(routes.LOGIN)
         }
-      } catch (error) {
-        toast.error("Registration failed.");
-      }
+        else{
+          throw new Error('Failed to sign up');
+        }
+      })
+      .catch(err => {
+        console.error('Error signing up: ', err.message);
+        toast.error('Failed to sign up. Please try again.')
+      })
   };
 
   return (

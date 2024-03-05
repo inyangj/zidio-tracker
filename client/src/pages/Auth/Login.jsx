@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignInForm from "./components/SignInForm";
+// import axios  from "axios";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const Login = () => {
   const navigate = useNavigate();
   const url = import.meta.env.VITE_APP_BASE_URL;
 
-  const handleSignup = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -34,7 +35,23 @@ const Login = () => {
       password: formData.password,
     };
 
-   
+    // axios.post('http://localhost:3001/api/user/loginUser', {email : data.email, password : data.password})
+    // .then(response => {
+    //   if(response.ok){
+    //     setIsLoading(false);
+    //     toast.success('Signed up successfully!');
+    //     navigate(routes.DASHBOARD);
+    //   }
+    //   else{
+    //     throw new Error('Failed to sign up');
+    //   }
+    // })
+    // .catch(err => {
+    //   setIsLoading(false);
+
+    //   console.error('Error signing up:' , error.message);
+    //   toast.error('Failed to sign up. Please try again.');
+    // })  
   };
 
   return (
@@ -51,7 +68,7 @@ const Login = () => {
         <SignInForm
           formData={formData}
           handleInputChange={handleInputChange}
-          handleSignup={handleSignup}
+          handleLogin={handleLogin}
           isLoading={isLoading}
         />
         <div className="text-center ">
@@ -64,7 +81,7 @@ const Login = () => {
             Don’t have an account?
             <Link to={routes.SIGN_UP} className="text-based font-semibold">
               Create an account
-            </Link>
+            </Link> 
           </p>
         </div>
       </div>
