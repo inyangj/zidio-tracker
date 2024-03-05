@@ -45,6 +45,7 @@ const Signup = () => {
 
       console.log(`firstname : ${data.firstName} -- lastname : ${data.lastName} -- email : ${data.email} -- password : ${data.password}`);
 
+      // just--
       // try {
       //   setIsLoading(true);
       //   const response = await axios.post(`${url}/api/v1/users/signup`, data);
@@ -60,6 +61,9 @@ const Signup = () => {
       // } catch (error) {
       //   toast.error("Registration failed.");
       // }
+
+
+
       await axios.post('/api/user/registerUser', {firstname : formData.firstNnme, lastname : formData.lastname, email : formData.email, password : formData.password})
       .then(response => {
         if(response.ok){
